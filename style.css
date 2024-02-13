@@ -1,0 +1,162 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #f0f0f0;
+}
+
+.container {
+  perspective: 1000px;
+  min-height: auto; /* Ensure it fills at least the viewport height */
+  position: relative; /* Needed for absolute positioning context */  
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-box {
+  width: 60vw;
+  height: 30vw;
+  background: linear-gradient(to right, #3498db 50%, #e74c3c 50%);
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1), -10px -10px 30px rgba(255, 255, 255, 0.1);
+  backface-visibility: hidden;
+  transition: background-position 0.5s ease;
+  background-size: 200% 100%;
+  background-position: center bottom; /* Updated this line */
+    box-shadow: 12px 12px 35px rgba(0, 0, 0, 0.2), -12px -12px 35px rgba(255, 255, 255, 0.2); /* More dramatic shadow */
+    position: relative; /* Establish a positioning context for children */
+}
+
+/* New divider shadow */
+.color-box::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 15px;
+  border-radius: 10px;  
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-top: 20px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.load-track-btn, .play-pause-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #8c8c8c;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 4px 4px 8px #b8b8b8,
+              -4px -4px 8px #ffffff;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(255, 255, 255, 0.3); /* More dramatic shadow */
+}
+
+.file-input {
+  display: none;
+}
+
+.track-info {
+  position: absolute;
+  top: 10px;
+  width: 50%;
+  text-align: center;
+  z-index: 2; /* Ensure it's above the color box but below the waveforms */
+}
+
+.track-info.right {
+  right: 0;
+}
+
+.track-name {
+  color: #fff;
+  margin-top: 5px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60vw;
+}
+.waveform {
+  position: absolute;
+  top: 220px; /* Adjust this value to place the waveform under the track name */
+  left: 10px; /* Give some space from the left edge of the color-box */
+  right: 10px; /* Give some space from the right edge of the color-box */
+  width: auto; /* Let the waveform take the needed horizontal space */
+  height: 100px; /* Or the height of your waveform */
+  z-index: 2; /* Make sure it's above the color-box layers */
+}
+
+.time-info {
+  text-align: center;
+  color: #666;
+  font-size: 24px;
+  margin-top: 50px;
+  z-index: 30;
+}
+.volume-controls {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.volume-slider {
+  -webkit-appearance: slider-vertical;
+  width: 222px;
+  height: 100px;
+  margin: 20px 0;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Add an inset shadow for a "sunk" effect */
+    border-radius: 20px;
+}
+
+.volume-slider:hover {
+  opacity: 1;
+}
